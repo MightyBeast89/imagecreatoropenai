@@ -4,56 +4,79 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/spinner.css" />
 
     <script src="js/main.js" defer></script>
     <title>Image Generator using OPEN AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <header>
-      <div class="navbar">
+  <body class="w-full relative text-gray-700 bg-slate-100">
+    <header class="p-8">
+      <div class="navbar flex justify-between font-medium">
         <div class="logo">
-          <h2>Image Generator using OPEN AI</h2>
+          <h2>Image Generator</h2>
         </div>
-        <div class="nav-links">
-          <ul>
-            <li>
-              <a href="https://beta.openai.com/docs" target="_blank"
-                >OpenAI API Docs</a
-              >
-            </li>
-          </ul>
+        <div>
+            <a href="https://beta.openai.com/docs" target="_blank"
+              >OpenAI API Docs</a
+            >
         </div>
       </div>
     </header>
 
-    <main>
-      <section class="showcase">
-        <form id="image-form">
-          <h1>Describe An Image</h1>
-          <div class="form-control">
-            <input type="text" id="prompt" placeholder="Enter Text" />
+    <main class="p-8">
+      <section class="showcase mt-24 ">
+        <form id='image-form' class="md:flex flex-col items-center justify-center">
+          <h1 class="text-4xl text-center mb-8 font-poppins font-medium">Describe An Image</h1>
+          <div class="form-control flex flex-col gap-6 md:w-2/5">
+              <input class="w-full py-4 px-2 rounded-md outline-0 border-2 border-slate-800" type="text" id="prompt" placeholder="Enter Text" />
+
+            <!-- size -->
+
+              <select class="w-full p-2 rounded-md outline-0 border-2 border-slate-800" name="size" id="size">
+                <option value="small">Small</option>
+                <option value="medium" selected>Medium</option>
+                <option value="large">Large</option>
+              </select>
+
+            <div class="flex justify-center items-center">
+
+              <button type="submit" class="btn bg-green-400 w-2/5 p-2 rounded-md text-white">Generate</button>
+            </div>
           </div>
-          <!-- size -->
-          <div class="form-control">
-            <select name="size" id="size">
-              <option value="small">Small</option>
-              <option value="medium" selected>Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-          <button type="submit" class="btn">Generate</button>
         </form>
       </section>
 
-      <section class="image">
-        <div class="image-container">
-          <h2 class="msg"></h2>
-          <img src="" alt="" id="image" />
-        </div>
-      </section>
     </main>
+    <div class="absolute hidden image m-6 bg-black/90 rounded-md">
+      <div class="relative">
+
+        <p class="text-2xl text-white absolute right-10">x</p>
+      </div>
+      <div class="image-container flex flex-col items-center justify-center p-10">
+        <h2 class="msg text-white font-medium text-lg mb-5"></h2>
+        <img src="" alt="" id="image" class="w-140 h-140 rounded-lg" />
+      </div>
+    </div>
 
     <div class="spinner"></div>
   </body>

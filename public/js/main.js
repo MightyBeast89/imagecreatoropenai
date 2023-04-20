@@ -41,6 +41,10 @@ async function generateImageRequest(prompt, size) {
     const imageUrl = data.data;
 
     document.querySelector("#image").src = imageUrl;
+    document.querySelector('.image').classList.remove('hidden');
+    document.querySelector('.msg').textContent = prompt;
+    document.querySelector('.image').classList.add('inset-0');
+
 
     removeSpinner();
   } catch (error) {
